@@ -48,3 +48,4 @@ scalability.
 * Security
 * Swagger
 * Clean Code
+* Test
