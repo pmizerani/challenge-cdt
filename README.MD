@@ -21,6 +21,8 @@ Your task is to develop one (or more, feel free) RESTful service(s) to:
 * Retrieve an **Order** by parameters
 * Refund **Order** or any **Order Item**
 
+**IMPORTANT** You have to implement at least one **database procedure** to execute the payment process or other process you may judge important.
+
 Fork this repository and submit your code with partial commits.
 
 ## Business Rules
