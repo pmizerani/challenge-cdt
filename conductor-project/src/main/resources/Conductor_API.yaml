@@ -1,0 +1,261 @@
+swagger: "2.0"
+info: 
+  title: Stores API - Conductor.
+  description: Store and orders
+  version: '0.0.1'
+
+tags:
+  - name: "Store"
+  - name: "Order"
+  - name: "Payment"
+host: api.conductor.com
+basePath: /conductor/api/v1
+schemes:
+- https
+paths:
+  /Store:
+    post:
+      summary: Generate a new Store
+      tags:
+        - "Store"
+      description: Generate a new store composed by id, name and address
+      operationId: postStore
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: newStore
+          in: body
+          description: Input data to create a new store
+          required: true
+          schema:
+            $ref: '#/definitions/Store'
+      responses:
+        '201': 
+          description: Store create sucessful
+          schema:
+            $ref: '#/definitions/Store'
+        '400': 
+          description: Bad Request
+        '404': 
+          description: Not Found
+        '500': 
+          description: Internal Error
+    get:
+      summary: Return a store by parameters
+      tags:
+        - "Store"
+      description: Return a store by any parameters sent in the request
+      operationId: getStore
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: store
+          in: body
+          description: Input data to retrieve a store
+          required: true
+          schema:
+            $ref: '#/definitions/Store'
+      responses:
+        '200': 
+          description: Operation successful
+          schema:
+            $ref: '#/definitions/Store'
+        '400': 
+          description: Bad Request
+        '404': 
+          description: Not Found
+        '500': 
+          description: Internal Error
+  /Store/{storeId}:
+    put:
+      summary: Update a existing store
+      tags:
+        - "Store"
+      description: Update a Store information
+      operationId: updateStore
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: storeId
+          in: path
+          description: The id of store to update
+          required: true
+          type: string
+        - name: updateStore
+          in: body
+          description: Input data to update a store
+          required: true
+          schema:
+            $ref: '#/definitions/Store'
+      responses:
+        '200': 
+          description: Store update successful
+          schema:
+            $ref: '#/definitions/Store'
+        '400': 
+          description: Bad Request
+        '404': 
+          description: Not Found
+        '500': 
+          description: Internal Error
+  /Order:
+    post:
+      summary: Generate a new Order
+      tags:
+        - "Order"
+      description: Generate a new order composed by order id, address, confirmation date, status order items and total
+      operationId: postOrder
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: newOrder
+          in: body
+          description: Input data to create a new order
+          required: true
+          schema:
+            $ref: '#/definitions/Order'
+      responses:
+        '201': 
+          description: Order create sucessful
+          schema:
+            $ref: '#/definitions/Order'
+        '400': 
+          description: Bad Request
+        '404': 
+          description: Not Found
+        '500': 
+          description: Internal Error
+    get:
+      summary: Return a order by parameters
+      tags:
+        - "Order"
+      description: Return an order by asomething parameters sent in the request
+      operationId: getOrder
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: order
+          in: body
+          description: Input data to retrieve a store
+          required: true
+          schema:
+            $ref: '#/definitions/Order'
+      responses:
+        '200': 
+          description: Operation successful
+          schema:
+            $ref: '#/definitions/Order'
+        '400': 
+          description: Bad Request
+        '404': 
+          description: Not Found
+        '500': 
+          description: Internal Error
+  /Payment:
+    post:
+      summary: Generate a payment for an order
+      tags:
+        - "Payment"
+      description: Generate a payment for an order, composed by status, credit card number and payment date
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: orderId
+          in: query
+          description: The order identifier for payment
+          required: true
+          type: string
+        - name: newPayment
+          in: body
+          description: Input data to create a new Payment for an order
+          required: true
+          schema:
+            $ref: '#/definitions/Payment'
+      responses:
+        '201': 
+          description: Payment sucessful
+        '400': 
+          description: Bad Request
+        '404': 
+          description: Not Found
+        '500': 
+          description: Internal Error
+        
+
+
+definitions:
+  Store:
+    description: This is the store model
+    type: object
+    properties:
+      storeId:
+        description: Identifier of a single store
+        type: integer
+      name:
+        description: The name of store
+        type: string
+      address:
+        description: The addres of store
+        type: string
+  Order:
+    description: This is the store model
+    type: object
+    properties:
+      orderId:
+        description: Identifier of a single order
+        type: integer
+      addres: 
+        description: The addres of order
+        type: string
+      confirmationDate:
+        description: Represents the date this order was approved
+        type: string
+      status:
+        description: Represents the order status, if approved, awaiting approval, payment refusal
+        type: string
+      orderItem:
+        description: The items that make up the order
+        type: array
+        items: 
+          $ref: '#/definitions/OrderItem'
+      total:
+        description: Represents the total amount of this order
+        type: number
+  OrderItem:
+    description: The order item
+    type: object
+    properties:
+      description: 
+        description: This is a description of the order item
+        type: string
+      unitPrice:
+        description: Represents the unit price of this item
+        type: number
+      quantity:
+        description: Quantity of this item that this order contains
+        type: integer
+  Payment:
+    description: A payment for an order
+    type: object
+    properties:
+      status:
+        description: Represent the status of payment
+        type: string
+      creditCardNum: 
+        description: This is a number of credit card
+        type: string
+      paymentDate:
+        description: effective payment date
+        type: string
