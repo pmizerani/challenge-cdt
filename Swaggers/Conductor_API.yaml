@@ -222,8 +222,6 @@ definitions:
       confirmationDate:
         description: Represents the date this order was approved
         type: string
-        format: date
-        example: 'DDMMYYYY'
       status:
         description: Represents the order status, if approved, awaiting approval, payment refusal
         type: string
@@ -261,6 +259,3 @@ definitions:
       paymentDate:
         description: effective payment date
         type: string
-        format: date
-        example: 'DDMMYYYY'
-      
