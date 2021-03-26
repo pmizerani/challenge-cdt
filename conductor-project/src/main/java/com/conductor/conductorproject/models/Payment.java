@@ -5,7 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -14,15 +20,25 @@ import javax.validation.constraints.*;
  */
 @ApiModel(description = "A payment for an order")
 @Validated
+@Entity
+@EntityListeners(AuditingEntityListener.class)
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-25T17:49:38.592661-03:00[America/Sao_Paulo]")
 public class Payment   {
   @JsonProperty("status")
+  @Column
+  @NotNull
+  @Size(max = 5)
   private String status = null;
 
   @JsonProperty("creditCardNum")
+  @Column
+  @NotNull
+  @Size(max = 16)
   private String creditCardNum = null;
 
   @JsonProperty("paymentDate")
+  @Column
+  @CreatedDate
   private String paymentDate = null;
 
   public Payment status(String status) {

@@ -5,24 +5,38 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.validation.annotation.Validated;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 
 /**
  * This is the store model
  */
 @ApiModel(description = "This is the store model")
 @Validated
+@Entity
+@EntityListeners(AuditingEntityListener.class)
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-25T17:49:38.592661-03:00[America/Sao_Paulo]")
 public class Store   {
   @JsonProperty("storeId")
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer storeId = null;
 
   @JsonProperty("name")
+  @Column
+  @NotNull
+  @Size(max = 100)
   private String name = null;
 
   @JsonProperty("address")
+  @Column
+  @NotNull
   private String address = null;
 
   public Store storeId(Integer storeId) {

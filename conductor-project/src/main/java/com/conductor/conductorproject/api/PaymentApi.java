@@ -36,8 +36,8 @@ public interface PaymentApi {
     @RequestMapping(value = "/Payment",
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Void> paymentPost(@ApiParam(value = "Input data to create a new Payment for an order" ,required=true )  @Valid @RequestBody Payment body
-,@NotNull @ApiParam(value = "The order identifier for payment", required = true) @Valid @RequestParam(value = "orderId", required = true) String orderId
+    ResponseEntity<Void> postPayment(@ApiParam(value = "Input data to create a new Payment for an order" ,required=true )  @Valid @RequestBody Payment body
+,@NotNull @ApiParam(value = "The order identifier for payment", required = true) @Valid @RequestParam(value = "orderId", required = true) Integer orderId
 );
 
 }

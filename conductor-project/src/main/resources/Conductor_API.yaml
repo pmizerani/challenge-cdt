@@ -144,12 +144,10 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: order
-          in: body
-          description: Input data to retrieve a store
+        - name: orderId
+          in: query
+          description: Store ID to retrieve a store
           required: true
-          schema:
-            $ref: '#/definitions/Order'
       responses:
         '200': 
           description: Operation successful
@@ -167,6 +165,7 @@ paths:
       tags:
         - "Payment"
       description: Generate a payment for an order, composed by status, credit card number and payment date
+      operationId: postPayment
       consumes:
         - application/json
       produces:
@@ -176,7 +175,7 @@ paths:
           in: query
           description: The order identifier for payment
           required: true
-          type: string
+          type: integer
         - name: newPayment
           in: body
           description: Input data to create a new Payment for an order

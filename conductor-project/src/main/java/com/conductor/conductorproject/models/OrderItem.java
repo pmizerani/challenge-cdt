@@ -6,7 +6,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -15,15 +21,24 @@ import javax.validation.constraints.*;
  */
 @ApiModel(description = "The order item")
 @Validated
+@Entity
+@EntityListeners(AuditingEntityListener.class)
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-25T17:49:38.592661-03:00[America/Sao_Paulo]")
 public class OrderItem   {
   @JsonProperty("description")
+  @Column
+  @NotNull
+  @Size(max = 150)
   private String description = null;
 
   @JsonProperty("unitPrice")
+  @Column
+  @NotNull
   private BigDecimal unitPrice = null;
 
   @JsonProperty("quantity")
+  @Column
+  @NotNull
   private Integer quantity = null;
 
   public OrderItem description(String description) {

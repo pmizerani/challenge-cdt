@@ -37,7 +37,7 @@ public interface OrderApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.GET)
-    ResponseEntity<Order> getOrder(@ApiParam(value = "Input data to retrieve a store" ,required=true )  @Valid @RequestBody Order body
+    ResponseEntity<Order> getOrder(@NotNull @ApiParam(value = "The order identifier for payment", required = true) @Valid @RequestParam(value = "orderId", required = true) Integer orderId
 );
 
 

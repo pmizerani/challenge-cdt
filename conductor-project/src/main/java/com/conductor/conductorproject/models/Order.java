@@ -9,7 +9,13 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -18,25 +24,39 @@ import javax.validation.constraints.*;
  */
 @ApiModel(description = "This is the store model")
 @Validated
+@Entity
+@EntityListeners(AuditingEntityListener.class)
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-25T17:49:38.592661-03:00[America/Sao_Paulo]")
 public class Order   {
   @JsonProperty("orderId")
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer orderId = null;
 
   @JsonProperty("addres")
+  @Column
+  @NotNull
+  @Size(max = 100)
   private String addres = null;
 
   @JsonProperty("confirmationDate")
+  @Column
+  @CreatedDate
   private String confirmationDate = null;
 
   @JsonProperty("status")
+  @Column
+  @NotNull
   private String status = null;
 
   @JsonProperty("orderItem")
   @Valid
+  @OneToMany
   private List<OrderItem> orderItem = null;
 
   @JsonProperty("total")
+  @Column
+  @NotNull
   private BigDecimal total = null;
 
   public Order orderId(Integer orderId) {
