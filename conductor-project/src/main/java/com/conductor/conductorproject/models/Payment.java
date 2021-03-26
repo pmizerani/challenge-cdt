@@ -1,17 +1,17 @@
 package com.conductor.conductorproject.models;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.validation.annotation.Validated;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -22,10 +22,15 @@ import javax.validation.constraints.*;
 @Validated
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-25T17:49:38.592661-03:00[America/Sao_Paulo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-26T11:41:11.692309-03:00[America/Sao_Paulo]")
 public class Payment   {
+
+  @JsonProperty("paymentId")
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer paymentId = null;
+
   @JsonProperty("status")
-  @Column
   @NotNull
   @Size(max = 5)
   private String status = null;
@@ -38,8 +43,8 @@ public class Payment   {
 
   @JsonProperty("paymentDate")
   @Column
-  @CreatedDate
-  private String paymentDate = null;
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+  private LocalDateTime paymentDate = null;
 
   public Payment status(String status) {
     this.status = status;
@@ -79,7 +84,7 @@ public class Payment   {
     this.creditCardNum = creditCardNum;
   }
 
-  public Payment paymentDate(String paymentDate) {
+  public Payment paymentDate(LocalDateTime paymentDate) {
     this.paymentDate = paymentDate;
     return this;
   }
@@ -90,11 +95,11 @@ public class Payment   {
   **/
   @ApiModelProperty(value = "effective payment date")
   
-    public String getPaymentDate() {
+    public LocalDateTime getPaymentDate() {
     return paymentDate;
   }
 
-  public void setPaymentDate(String paymentDate) {
+  public void setPaymentDate(LocalDateTime paymentDate) {
     this.paymentDate = paymentDate;
   }
 

@@ -21,7 +21,7 @@ public class PaymentRepositoryImpl extends StoredProcedure implements PaymentRep
     }
 
     @Override
-    public String postPayment(String creditCardNum, Integer orderId) {
+    public String postPayment(String creditCardNum, Long orderId) {
         Map<String, Object> result = super.execute(creditCardNum,orderId);
 
         return null;

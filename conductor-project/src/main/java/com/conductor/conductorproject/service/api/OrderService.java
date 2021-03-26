@@ -1,12 +1,15 @@
 package com.conductor.conductorproject.service.api;
 
-import com.conductor.conductorproject.models.Order;
+import com.conductor.conductorproject.models.CompleOrder;
+import com.conductor.conductorproject.models.Orders;
 
-import javax.validation.Valid;
+import java.math.BigDecimal;
 
 public interface OrderService {
 
-    Order getOrder(Integer orderId);
+    Orders getOrder(Long orderId);
 
-    Order postOrder(Order body);
+    Orders postOrder(CompleOrder body);
+
+    void updateOrders(double total, Long orderId);
 }

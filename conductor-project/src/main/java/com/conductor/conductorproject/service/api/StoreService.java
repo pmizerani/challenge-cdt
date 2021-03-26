@@ -6,10 +6,10 @@ import javax.validation.Valid;
 
 public interface StoreService {
 
-    Store getStore(Store body);
+    Store getStore(Long storeId);
 
     Store postStore(Store body);
 
-    Store updateStore(Store body, Integer storeId);
+    Store updateStore(Store body);
 
 }

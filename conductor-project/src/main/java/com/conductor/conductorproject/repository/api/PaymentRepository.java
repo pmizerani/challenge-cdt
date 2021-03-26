@@ -4,6 +4,6 @@ import com.conductor.conductorproject.models.Payment;
 
 public interface PaymentRepository {
 
-    String postPayment(String creditCardNum, Integer orderId);
+    String postPayment(String creditCardNum, Long orderId);
 
 }

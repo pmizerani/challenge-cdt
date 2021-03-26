@@ -1,17 +1,11 @@
 package com.conductor.conductorproject.models;
 
 import java.util.Objects;
-import com.conductor.conductorproject.models.OrderItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.validation.annotation.Validated;
 
@@ -26,22 +20,22 @@ import javax.validation.constraints.*;
 @Validated
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-25T17:49:38.592661-03:00[America/Sao_Paulo]")
-public class Order   {
+@Table(name = "orders")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-26T11:41:11.692309-03:00[America/Sao_Paulo]")
+public class Orders {
   @JsonProperty("orderId")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer orderId = null;
+  private Long id = null;
 
   @JsonProperty("addres")
   @Column
   @NotNull
-  @Size(max = 100)
+  @Size(max = 200)
   private String addres = null;
 
   @JsonProperty("confirmationDate")
   @Column
-  @CreatedDate
   private String confirmationDate = null;
 
   @JsonProperty("status")
@@ -49,18 +43,11 @@ public class Order   {
   @NotNull
   private String status = null;
 
-  @JsonProperty("orderItem")
-  @Valid
-  @OneToMany
-  private List<OrderItem> orderItem = null;
-
   @JsonProperty("total")
-  @Column
-  @NotNull
   private BigDecimal total = null;
 
-  public Order orderId(Integer orderId) {
-    this.orderId = orderId;
+  public Orders id(Long id) {
+    this.id = id;
     return this;
   }
 
@@ -70,15 +57,15 @@ public class Order   {
   **/
   @ApiModelProperty(value = "Identifier of a single order")
   
-    public Integer getOrderId() {
-    return orderId;
+    public Long getOrderId() {
+    return id;
   }
 
-  public void setOrderId(Integer orderId) {
-    this.orderId = orderId;
+  public void setOrderId(Long orderId) {
+    this.id = orderId;
   }
 
-  public Order addres(String addres) {
+  public Orders addres(String addres) {
     this.addres = addres;
     return this;
   }
@@ -97,7 +84,7 @@ public class Order   {
     this.addres = addres;
   }
 
-  public Order confirmationDate(String confirmationDate) {
+  public Orders confirmationDate(String confirmationDate) {
     this.confirmationDate = confirmationDate;
     return this;
   }
@@ -116,7 +103,7 @@ public class Order   {
     this.confirmationDate = confirmationDate;
   }
 
-  public Order status(String status) {
+  public Orders status(String status) {
     this.status = status;
     return this;
   }
@@ -135,34 +122,7 @@ public class Order   {
     this.status = status;
   }
 
-  public Order orderItem(List<OrderItem> orderItem) {
-    this.orderItem = orderItem;
-    return this;
-  }
-
-  public Order addOrderItemItem(OrderItem orderItemItem) {
-    if (this.orderItem == null) {
-      this.orderItem = new ArrayList<OrderItem>();
-    }
-    this.orderItem.add(orderItemItem);
-    return this;
-  }
-
-  /**
-   * The items that make up the order
-   * @return orderItem
-  **/
-  @ApiModelProperty(value = "The items that make up the order")
-      @Valid
-    public List<OrderItem> getOrderItem() {
-    return orderItem;
-  }
-
-  public void setOrderItem(List<OrderItem> orderItem) {
-    this.orderItem = orderItem;
-  }
-
-  public Order total(BigDecimal total) {
+  public Orders total(BigDecimal total) {
     this.total = total;
     return this;
   }
@@ -191,18 +151,17 @@ public class Order   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Order order = (Order) o;
-    return Objects.equals(this.orderId, order.orderId) &&
-        Objects.equals(this.addres, order.addres) &&
-        Objects.equals(this.confirmationDate, order.confirmationDate) &&
-        Objects.equals(this.status, order.status) &&
-        Objects.equals(this.orderItem, order.orderItem) &&
-        Objects.equals(this.total, order.total);
+    Orders orders = (Orders) o;
+    return Objects.equals(this.id, orders.id) &&
+        Objects.equals(this.addres, orders.addres) &&
+        Objects.equals(this.confirmationDate, orders.confirmationDate) &&
+        Objects.equals(this.status, orders.status) &&
+        Objects.equals(this.total, orders.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(orderId, addres, confirmationDate, status, orderItem, total);
+    return Objects.hash(id, addres, confirmationDate, status, total);
   }
 
   @Override
@@ -210,11 +169,10 @@ public class Order   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Order {\n");
     
-    sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
+    sb.append("    orderId: ").append(toIndentedString(id)).append("\n");
     sb.append("    addres: ").append(toIndentedString(addres)).append("\n");
     sb.append("    confirmationDate: ").append(toIndentedString(confirmationDate)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    orderItem: ").append(toIndentedString(orderItem)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("}");
     return sb.toString();

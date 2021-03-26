@@ -23,8 +23,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-25T17:49:38.592661-03:00[America/Sao_Paulo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-26T11:41:11.692309-03:00[America/Sao_Paulo]")
 @Api(value = "Store", description = "the Store API")
+@RequestMapping(value = "/conductor/api/v1")
 public interface StoreApi {
 
     @ApiOperation(value = "Return a store by parameters", nickname = "getStore", notes = "Return a store by any parameters sent in the request", response = Store.class, tags={ "Store", })
@@ -37,11 +38,13 @@ public interface StoreApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.GET)
-    ResponseEntity<Store> getStore(@ApiParam(value = "Input data to retrieve a store" ,required=true )  @Valid @RequestBody Store body
+    ResponseEntity<Store> getStore(@NotNull @ApiParam(value = "Store ID to retrieve a store", required = true)
+                                   @Valid @RequestParam(value = "storeId", required = true) Long storeId
 );
 
 
-    @ApiOperation(value = "Generate a new Store", nickname = "postStore", notes = "Generate a new store composed by id, name and address", response = Store.class, tags={ "Store", })
+    @ApiOperation(value = "Generate a new Store", nickname = "postStore", notes = "Generate a new store composed by id," +
+            " name and address", response = Store.class, tags={ "Store", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Store create sucessful", response = Store.class),
         @ApiResponse(code = 400, message = "Bad Request"),
@@ -51,7 +54,8 @@ public interface StoreApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Store> postStore(@ApiParam(value = "Input data to create a new store" ,required=true )  @Valid @RequestBody Store body
+    ResponseEntity<Void> postStore(@ApiParam(value = "Input data to create a new store" ,required=true )
+                                    @Valid @RequestBody Store body
 );
 
 
@@ -61,12 +65,11 @@ public interface StoreApi {
         @ApiResponse(code = 400, message = "Bad Request"),
         @ApiResponse(code = 404, message = "Not Found"),
         @ApiResponse(code = 500, message = "Internal Error") })
-    @RequestMapping(value = "/Store/{storeId}",
+    @RequestMapping(value = "/Store",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.PUT)
     ResponseEntity<Store> updateStore(@ApiParam(value = "Input data to update a store" ,required=true )  @Valid @RequestBody Store body
-,@ApiParam(value = "The id of store to update",required=true) @PathVariable("storeId") String storeId
 );
 
 }

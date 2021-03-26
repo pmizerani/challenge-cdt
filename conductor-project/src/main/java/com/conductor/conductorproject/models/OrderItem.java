@@ -1,18 +1,17 @@
 package com.conductor.conductorproject.models;
 
+import java.util.List;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 
+import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.validation.annotation.Validated;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -22,13 +21,20 @@ import javax.validation.constraints.*;
 @ApiModel(description = "The order item")
 @Validated
 @Entity
+@Data
 @EntityListeners(AuditingEntityListener.class)
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-25T17:49:38.592661-03:00[America/Sao_Paulo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-26T11:41:11.692309-03:00[America/Sao_Paulo]")
 public class OrderItem   {
+
+  @JsonProperty("orderItemId")
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id = null;
+
   @JsonProperty("description")
   @Column
   @NotNull
-  @Size(max = 150)
+  @Size(max = 200)
   private String description = null;
 
   @JsonProperty("unitPrice")
@@ -41,6 +47,10 @@ public class OrderItem   {
   @NotNull
   private Integer quantity = null;
 
+  @JsonProperty("orderid")
+  private Long orderId = null;
+
+
   public OrderItem description(String description) {
     this.description = description;
     return this;
@@ -52,7 +62,7 @@ public class OrderItem   {
   **/
   @ApiModelProperty(value = "This is a description of the order item")
   
-    public String getDescription() {
+  public String getDescription() {
     return description;
   }
 
@@ -71,10 +81,10 @@ public class OrderItem   {
   **/
   @ApiModelProperty(value = "Represents the unit price of this item")
   
-    @Valid
-    public BigDecimal getUnitPrice() {
-    return unitPrice;
-  }
+  @Valid
+  public BigDecimal getUnitPrice() {
+  return unitPrice;
+}
 
   public void setUnitPrice(BigDecimal unitPrice) {
     this.unitPrice = unitPrice;
@@ -91,9 +101,9 @@ public class OrderItem   {
   **/
   @ApiModelProperty(value = "Quantity of this item that this order contains")
   
-    public Integer getQuantity() {
-    return quantity;
-  }
+  public Integer getQuantity() {
+  return quantity;
+}
 
   public void setQuantity(Integer quantity) {
     this.quantity = quantity;

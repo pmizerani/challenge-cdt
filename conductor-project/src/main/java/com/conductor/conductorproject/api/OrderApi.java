@@ -5,45 +5,39 @@
  */
 package com.conductor.conductorproject.api;
 
-import com.conductor.conductorproject.models.Order;
+import com.conductor.conductorproject.models.CompleOrder;
+import com.conductor.conductorproject.models.Orders;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.CookieValue;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import java.util.List;
-import java.util.Map;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-25T17:49:38.592661-03:00[America/Sao_Paulo]")
+
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-26T11:41:11.692309-03:00[America/Sao_Paulo]")
 @Api(value = "Order", description = "the Order API")
+@RequestMapping(value = "/conductor/api/v1")
 public interface OrderApi {
 
-    @ApiOperation(value = "Return a order by parameters", nickname = "getOrder", notes = "Return an order by asomething parameters sent in the request", response = Order.class, tags={ "Order", })
+    @ApiOperation(value = "Return a order by parameters", nickname = "getOrder", notes = "Return an order by asomething parameters sent in the request", response = Orders.class, tags={ "Order", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Operation successful", response = Order.class),
+        @ApiResponse(code = 200, message = "Operation successful", response = Orders.class),
         @ApiResponse(code = 400, message = "Bad Request"),
         @ApiResponse(code = 404, message = "Not Found"),
         @ApiResponse(code = 500, message = "Internal Error") })
     @RequestMapping(value = "/Order",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
         method = RequestMethod.GET)
-    ResponseEntity<Order> getOrder(@NotNull @ApiParam(value = "The order identifier for payment", required = true) @Valid @RequestParam(value = "orderId", required = true) Integer orderId
+    ResponseEntity<Orders> getOrder(@NotNull @ApiParam(value = "Order ID to retrieve an order", required = true) @Valid @RequestParam(value = "orderId", required = true) Long orderId
 );
 
 
-    @ApiOperation(value = "Generate a new Order", nickname = "postOrder", notes = "Generate a new order composed by order id, address, confirmation date, status order items and total", response = Order.class, tags={ "Order", })
+    @ApiOperation(value = "Generate a new Order", nickname = "postOrder", notes = "Generate a new order composed by order id, address, confirmation date, status order items and total", response = Orders.class, tags={ "Order", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "Order create sucessful", response = Order.class),
+        @ApiResponse(code = 201, message = "Order create sucessful", response = Orders.class),
         @ApiResponse(code = 400, message = "Bad Request"),
         @ApiResponse(code = 404, message = "Not Found"),
         @ApiResponse(code = 500, message = "Internal Error") })
@@ -51,7 +45,7 @@ public interface OrderApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Order> postOrder(@ApiParam(value = "Input data to create a new order" ,required=true )  @Valid @RequestBody Order body
+    ResponseEntity<Void> postOrder(@ApiParam(value = "Input data to create a new order" ,required=true )  @Valid @RequestBody CompleOrder body
 );
 
 }

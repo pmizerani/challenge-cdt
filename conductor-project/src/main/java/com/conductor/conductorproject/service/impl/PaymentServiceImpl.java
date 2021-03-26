@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaymentServiceImpl implements PaymentService {
 
-    @Autowired
-    PaymentRepository repository;
+//    @Autowired
+//    PaymentRepository repository;
 
     @Override
-    public void postPayment(Payment body, String orderId) {
+    public void postPayment(Payment body, Long orderId) {
 
     }
 }

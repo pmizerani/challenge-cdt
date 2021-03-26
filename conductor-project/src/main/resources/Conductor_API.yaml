@@ -53,12 +53,11 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: store
-          in: body
-          description: Input data to retrieve a store
+        - name: storeId
+          in: query
+          description: The id of store to retrivie
           required: true
-          schema:
-            $ref: '#/definitions/Store'
+          type: integer
       responses:
         '200': 
           description: Operation successful
@@ -86,7 +85,7 @@ paths:
           in: path
           description: The id of store to update
           required: true
-          type: string
+          type: integer
         - name: updateStore
           in: body
           description: Input data to update a store
@@ -137,7 +136,7 @@ paths:
       summary: Return a order by parameters
       tags:
         - "Order"
-      description: Return an order by asomething parameters sent in the request
+      description: Return an order by something parameters sent in the request
       operationId: getOrder
       consumes:
         - application/json
@@ -146,8 +145,9 @@ paths:
       parameters:
         - name: orderId
           in: query
-          description: Store ID to retrieve a store
+          description: Store ID to retrivie a store
           required: true
+          type: integer
       responses:
         '200': 
           description: Operation successful

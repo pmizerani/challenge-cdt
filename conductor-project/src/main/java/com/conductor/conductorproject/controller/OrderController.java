@@ -1,41 +1,41 @@
 package com.conductor.conductorproject.controller;
 
 import com.conductor.conductorproject.api.OrderApi;
-import com.conductor.conductorproject.models.Order;
-import com.conductor.conductorproject.service.api.OrderService;
+import com.conductor.conductorproject.models.CompleOrder;
+import com.conductor.conductorproject.models.Orders;
+import com.conductor.conductorproject.service.impl.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
-@Controller
+@RestController
 public class OrderController implements OrderApi {
 
     @Autowired
-    OrderService service;
+    private OrderServiceImpl service;
 
     @Override
-    public ResponseEntity<Order> getOrder(@Valid Integer orderId) {
-        Order result;
+    public ResponseEntity<Orders> getOrder(@NotNull @Valid Long orderId) {
+        Orders result;
         try {
             result = service.getOrder(orderId);
-            return new ResponseEntity<Order>(result, HttpStatus.OK);
+            return new ResponseEntity<Orders>(result, HttpStatus.OK);
         } catch (Exception e){
-            return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<Orders>(result = null, HttpStatus.BAD_REQUEST);
         }
     }
 
     @Override
-    public ResponseEntity<Order> postOrder(@Valid Order body) {
-        Order result;
-
+    public ResponseEntity<Void> postOrder(@Valid CompleOrder body) {
         try {
-            result = service.postOrder(body);
-            return new ResponseEntity<Order>(result, HttpStatus.CREATED);
+            service.postOrder(body);
+            return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (Exception e){
-            return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         }
     }
 }

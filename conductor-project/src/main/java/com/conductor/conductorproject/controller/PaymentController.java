@@ -17,7 +17,7 @@ public class PaymentController implements PaymentApi {
     PaymentService service;
 
     @Override
-    public ResponseEntity<Void> postPayment(@Valid Payment body, @NotNull @Valid Integer orderId) {
+    public ResponseEntity<Void> postPayment(@Valid Payment body, @NotNull @Valid Long orderId) {
 
         return null;
     }

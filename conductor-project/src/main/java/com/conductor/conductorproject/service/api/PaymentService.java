@@ -7,6 +7,6 @@ import javax.validation.constraints.NotNull;
 
 public interface PaymentService {
 
-    void postPayment(Payment body, String orderId);
+    void postPayment(Payment body, Long orderId);
 
 }

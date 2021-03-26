@@ -2,17 +2,13 @@ package com.conductor.conductorproject.models;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
+import javax.validation.constraints.*;
 
 /**
  * This is the store model
@@ -21,26 +17,27 @@ import javax.validation.constraints.Size;
 @Validated
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-25T17:49:38.592661-03:00[America/Sao_Paulo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-26T11:41:11.692309-03:00[America/Sao_Paulo]")
 public class Store   {
   @JsonProperty("storeId")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer storeId = null;
+  private Long id = null;
 
   @JsonProperty("name")
-  @Column
   @NotNull
+  @Column
   @Size(max = 100)
   private String name = null;
 
   @JsonProperty("address")
-  @Column
   @NotNull
+  @Column
+  @Size(max = 200)
   private String address = null;
 
-  public Store storeId(Integer storeId) {
-    this.storeId = storeId;
+  public Store storeId(Long storeId) {
+    this.id = storeId;
     return this;
   }
 
@@ -50,12 +47,12 @@ public class Store   {
   **/
   @ApiModelProperty(value = "Identifier of a single store")
   
-    public Integer getStoreId() {
-    return storeId;
+    public Long getStoreId() {
+    return id;
   }
 
-  public void setStoreId(Integer storeId) {
-    this.storeId = storeId;
+  public void setStoreId(Long id) {
+    this.id = id;
   }
 
   public Store name(String name) {
@@ -106,14 +103,14 @@ public class Store   {
       return false;
     }
     Store store = (Store) o;
-    return Objects.equals(this.storeId, store.storeId) &&
+    return Objects.equals(this.id, store.id) &&
         Objects.equals(this.name, store.name) &&
         Objects.equals(this.address, store.address);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(storeId, name, address);
+    return Objects.hash(id, name, address);
   }
 
   @Override
@@ -121,7 +118,7 @@ public class Store   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Store {\n");
     
-    sb.append("    storeId: ").append(toIndentedString(storeId)).append("\n");
+    sb.append("    storeId: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("}");

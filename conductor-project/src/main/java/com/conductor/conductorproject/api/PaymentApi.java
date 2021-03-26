@@ -23,11 +23,12 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-25T17:49:38.592661-03:00[America/Sao_Paulo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-03-26T11:41:11.692309-03:00[America/Sao_Paulo]")
 @Api(value = "Payment", description = "the Payment API")
+@RequestMapping(value = "/conductor/api/v1")
 public interface PaymentApi {
 
-    @ApiOperation(value = "Generate a payment for an order", nickname = "paymentPost", notes = "Generate a payment for an order, composed by status, credit card number and payment date", tags={ "Payment", })
+    @ApiOperation(value = "Generate a payment for an order", nickname = "postPayment", notes = "Generate a payment for an order, composed by status, credit card number and payment date", tags={ "Payment", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Payment sucessful"),
         @ApiResponse(code = 400, message = "Bad Request"),
@@ -37,7 +38,7 @@ public interface PaymentApi {
         consumes = { "application/json" },
         method = RequestMethod.POST)
     ResponseEntity<Void> postPayment(@ApiParam(value = "Input data to create a new Payment for an order" ,required=true )  @Valid @RequestBody Payment body
-,@NotNull @ApiParam(value = "The order identifier for payment", required = true) @Valid @RequestParam(value = "orderId", required = true) Integer orderId
+,@NotNull @ApiParam(value = "The order identifier for payment", required = true) @Valid @RequestParam(value = "orderId", required = true) Long orderId
 );
 
 }

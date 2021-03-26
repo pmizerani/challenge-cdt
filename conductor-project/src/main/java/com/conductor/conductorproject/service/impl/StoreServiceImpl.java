@@ -16,13 +16,8 @@ public class StoreServiceImpl implements StoreService {
     StoreRepository repository;
 
     @Override
-    public Store getStore(Store body) {
-        Optional<Store> store;
-        if(!isNullOrEmpty(body.getName())){
-            store = repository.findStoreByName(body.getName());
-        } else {
-            store = repository.findById(body.getStoreId());
-        }
+    public Store getStore(Long storeId) {
+        Optional<Store> store = repository.findById(storeId);
         return store.get();
     }
 
@@ -32,10 +27,8 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public Store updateStore(Store body, Integer storeId) {
-        String name = body.getName();
-        String address = body.getAddress();
-        return repository.updateStore(name,address,storeId);
+    public Store updateStore(Store body) {
+        return repository.save(body);
     }
 
     private boolean isNullOrEmpty(String validate){
