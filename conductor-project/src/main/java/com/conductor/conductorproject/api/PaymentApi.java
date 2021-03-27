@@ -39,6 +39,6 @@ public interface PaymentApi {
         method = RequestMethod.POST)
     ResponseEntity<Void> postPayment(@ApiParam(value = "Input data to create a new Payment for an order" ,required=true )  @Valid @RequestBody Payment body
 ,@NotNull @ApiParam(value = "The order identifier for payment", required = true) @Valid @RequestParam(value = "orderId", required = true) Long orderId
-);
+) throws Exception;
 
 }

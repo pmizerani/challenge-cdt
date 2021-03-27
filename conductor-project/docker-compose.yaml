@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+
+  sqlServer:
+    image: mcr.microsoft.com/mssql/server:2017-CU8-ubuntu
+    environment:
+      - 'ACCEPT_EULA=Y'
+      - 'SA_PASSWORD=@Conductor!032021'
+    networks:
+      rede:
+        ipv4_address: 200.100.50.5
+
+  conductor-service:
+    image: conductor-service
+    networks:
+      rede:
+        ipv4_address: 200.100.50.10
+
+networks:
+  rede:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: '200.100.50.0/24'
+
+
+
+

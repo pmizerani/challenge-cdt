@@ -41,11 +41,11 @@ The process should be closest possible to "real-time", balancing your choices in
 scalability.
 
 ## Nice to have features (describe or implement):
-* Asynchronous processing
-* Database
-* Docker
+* Asynchronous processing 
+* Database      - [x] Check
+* Docker        - [x] Check
 * AWS
 * Security
-* Swagger
-* Clean Code
-* Test
+* Swagger       - [x] Check
+* Clean Code    - [x] Check
+* Test          - [x] Check

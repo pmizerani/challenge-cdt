@@ -43,8 +43,8 @@ public class Payment   {
 
   @JsonProperty("paymentDate")
   @Column
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-  private LocalDateTime paymentDate = null;
+//  @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+  private String  paymentDate = null;
 
   public Payment status(String status) {
     this.status = status;
@@ -84,7 +84,7 @@ public class Payment   {
     this.creditCardNum = creditCardNum;
   }
 
-  public Payment paymentDate(LocalDateTime paymentDate) {
+  public Payment paymentDate(String paymentDate) {
     this.paymentDate = paymentDate;
     return this;
   }
@@ -95,11 +95,11 @@ public class Payment   {
   **/
   @ApiModelProperty(value = "effective payment date")
   
-    public LocalDateTime getPaymentDate() {
+    public String getPaymentDate() {
     return paymentDate;
   }
 
-  public void setPaymentDate(LocalDateTime paymentDate) {
+  public void setPaymentDate(String paymentDate) {
     this.paymentDate = paymentDate;
   }
 
