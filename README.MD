@@ -62,6 +62,7 @@ Para este projeto será necessario:
 ```
 Docker
 docker-compose
+Maven
 ```
 
 ### 🔧 Installations
@@ -105,6 +106,14 @@ $ docker-compose -v
 ```
 output:
 $ docker-compose version 1.25.0, build unknown
+```
+
+* [Intalar o Maven](https://maven.apache.org/download.cgi)
+
+E por fim, um build do jar:
+
+```
+$ mvn clean install
 ```
 
 ### ⚙️ Deploy
