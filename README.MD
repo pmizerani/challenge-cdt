@@ -55,14 +55,6 @@ scalability.
 
 Essas instruções permitirão que você obtenha uma cópia do projeto em máquina local para fins de deploy em containers.
 
-<!--ts--> 
-* [Requireds](#📋-requireds) 
-* [Instalations](#🔧instalations) 
-* [Deploy](#⚙️-deploy) 
-* [Testing](#🔩-testing) 
-* [Built with](#🛠️-built-with)
-<!--te-->
-
 ### 📋 Requireds
 
 Para este projeto será necessario:
@@ -140,8 +132,9 @@ O primeiro serviço a ser executado é o **postOuth**, com ele vamos gerar o tok
 
 Após gerar o token, vamos adicionar na aba header, da seguinte forma:
 
+![token-header](https://github.com/Hajadalaj/challenge-cdt/blob/feture/conductor/api/img/image.png)
 
-
+Então, com o token criado e configurado para os demais serviços podemos iniciar os testes funcionais. 😊
 
 ### 🛠️ Built with
 
@@ -149,5 +142,3 @@ Após gerar o token, vamos adicionar na aba header, da seguinte forma:
 * [Maven](https://maven.apache.org/) - Gerenciador de Dependência;
 * [spring-boot](https://spring.io/projects/spring-boot) - Framework: web, jpa, security e jpa.
 
-
-### [Voltar ao Starting](#🚀-starting)
