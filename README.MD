@@ -59,6 +59,7 @@ Essas instruções permitirão que você obtenha uma cópia do projeto em máqui
 * [Requireds](#📋-requireds) 
 * [Instalations](#🔧instalations) 
 * [Deploy](#⚙️-deploy) 
+* [Testing](#🔩-testing) 
 * [Built with](#🛠️-built-with)
 <!--te-->
 
@@ -123,7 +124,24 @@ E o BD pelo IP:
 ```
 200.100.50.5:1433
 ```
-Obs: Para este exemplo os dados de login e senha estão no arquivo 
+Obs: Para este exemplo os dados de login e senha estão no arquivo:
+
+```
+/challenge-cdt/conductor-project/src/main/resources/application.properties
+```
+
+### 🔩 Testing
+
+Ao concluir o paso de **Deploy**, vamos efetuar alguns testes funcionais, para tal, usaremos o Postman:
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/25b1e4fbe2128d3b120b)
+
+O primeiro serviço a ser executado é o **postOuth**, com ele vamos gerar o token para as demais API's.
+
+Após gerar o token, vamos adicionar na aba header, da seguinte forma:
+
+
+
 
 ### 🛠️ Built with
 
