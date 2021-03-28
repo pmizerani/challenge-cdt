@@ -45,7 +45,91 @@ scalability.
 - [x] Database      
 - [x] Docker        
 - [ ] AWS
-- [ ] Security
+- [x] Security
 - [x] Swagger       
 - [x] Clean Code    
 - [x] Test          
+
+
+## 🚀 Starting
+
+Essas instruções permitirão que você obtenha uma cópia do projeto em máquina local para fins de deploy em containers.
+
+<!--ts--> 
+* [Requireds](#📋-requireds) 
+* [Instalations](#🔧instalations) 
+* [Deploy](#⚙️-deploy) 
+* [Built with](#🛠️-built-with)
+<!--te-->
+
+### 📋 Requireds
+
+Para este projeto será necessario:
+
+```
+Docker
+docker-compose
+```
+
+### 🔧 Installations
+
+Para prepara o ambiente, siga os passos e instale as seguintes ferramentas:
+
+Clone o repositorio em uma pasta a sua escolha:
+
+```
+git clone https://github.com/Hajadalaj/challenge-cdt.git
+```
+
+* [Instalar o Docker](https://docs.docker.com/engine/install/)
+
+Após instalar o Docker, faça um pull da imagem do Microsoft SQL Server:
+
+```
+docker pull mcr.microsoft.com/mssql/server
+```
+* [Instalar o docker-compose](https://docs.docker.com/compose/install/)
+
+### ⚙️ Deploy
+
+Após concluir o passo de instalação, navegue até a pasta raiz do projeto pela cli:
+
+```
+cd /challenge-cdt/conductor-project/
+```
+
+Vamos executar comando docker para criar uma imagem do projeto:
+
+```
+docker build -t conductor-service .
+```
+
+E por fim, subir as duas imagens, **Microsoft SQL Server** e **conductor-service** 
+
+```
+docker-compose up
+```
+
+A partir de agora a aplicação fica acessivel pelo seguinte IP:
+
+```
+200.100.50.10:8080
+```
+
+[API](http://200.100.50.10:8080/swagger-ui.html#)
+
+E o BD pelo IP:
+
+```
+200.100.50.5:1433
+```
+Obs: Para este exemplo os dados de login e senha estão no arquivo 
+
+### 🛠️ Built with
+
+* [jdk-11](https://www.oracle.com/br/java/technologies/javase-jdk11-downloads.html) - Versão java;
+* [Maven](https://maven.apache.org/) - Gerenciador de Dependência;
+* [spring-boot](https://spring.io/projects/spring-boot) - Framework: web, jpa, security e jpa.
+
+
+### [Voltar ao Starting](#🚀-starting)
