@@ -1,10 +1,11 @@
         
  /*           
  Criado por: Abdel Galeb         
- Criado em: 26/03/2021 
+ Criado em: 26/03/2021
+ Revisada em: 28/03/2021
  Descrição: Simulando um pagamento por cartão de credito
  */  
-USE conductor
+USE master
 GO
  
 IF exists(select * from sys.all_objects where name = 'sp_payment')
@@ -50,7 +51,6 @@ IF (SELECT floor(RAND()*(10 - 9 + 1)+1)) = 1
 			RETURN @status
 		END
 	END
-END
 GO;
 
 

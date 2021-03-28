@@ -1,8 +1,21 @@
 
+ /*
+ Criado por: Abdel Galeb
+ Criado em: 26/03/2021
+ Revisada em: 28/03/2021
+ Descrição: Simulando um pagamento por cartão de credito
+ */
+--Step 1
+USE master
 
-CREATE PROCEDURE sp_payment
+--Step 2
+IF exists(select * from sys.all_objects where name = 'sp_payment')
+	DROP PROCEDURE dbo.sp_payment
+
+--Step 3
+CREATE PROCEDURE dbo.sp_payment
 	(@credit_card	AS VARCHAR(16),
-	 @orderId		AS BIGINT ,
+	 @orderId		AS BIGINT,
 	 @result		AS VARCHAR(8) OUTPUT)
 AS BEGIN
 SET NOCOUNT ON
@@ -38,9 +51,6 @@ IF (SELECT floor(RAND()*(10 - 9 + 1)+1)) = 1
 			WHERE id = @orderId
 			RETURN @status
 		END
-	END;
-
-
-
+	END
 
 

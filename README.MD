@@ -76,12 +76,36 @@ git clone https://github.com/Hajadalaj/challenge-cdt.git
 
 * [Instalar o Docker](https://docs.docker.com/engine/install/)
 
+Confirme a instalação:
+
+```
+input:
+$ docker -v
+```
+
+```
+output:
+$ Docker version 20.10.5, build 55c4c88
+```
+
 Após instalar o Docker, faça um pull da imagem do Microsoft SQL Server:
 
 ```
 docker pull mcr.microsoft.com/mssql/server
 ```
 * [Instalar o docker-compose](https://docs.docker.com/compose/install/)
+
+Confirme a instalação:
+
+```
+input:
+$ docker-compose -v
+```
+
+```
+output:
+$ docker-compose version 1.25.0, build unknown
+```
 
 ### ⚙️ Deploy
 
@@ -116,11 +140,22 @@ E o BD pelo IP:
 ```
 200.100.50.5:1433
 ```
-Obs: Para este exemplo os dados de login e senha estão no arquivo:
+Obs: Para este exemplo os dados de login e senha do DataBase, estão no arquivo:
 
 ```
 /challenge-cdt/conductor-project/src/main/resources/application.properties
 ```
+
+Com o banco devidamente configurado em algum SGBD, execute um dos seguintes sripts:
+
+**MSSQL**
+
+[stored_procedure](https://github.com/Hajadalaj/challenge-cdt/blob/feture/conductor/api/conductor-project/src/main/resources/sp_payment.sql)
+
+**DBeaver**
+
+[stored_procedure](https://github.com/Hajadalaj/challenge-cdt/blob/feture/conductor/api/conductor-project/src/main/resources/sp_payment_dbeaver.sql)
+
 
 ### 🔩 Testing
 
